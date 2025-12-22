@@ -188,29 +188,69 @@ observer.observe(document.querySelector('#live-stats'));
 </script>
 <section id="countdown" class="countdown-section">
   <div class="countdown-content">
-    <h2>Next Big Meeting</h2>
-    <p>Get ready! The meeting starts soon.</p>
+    <h2>Upcoming Countdown</h2>
+    <p>Exciting things are coming! Stay tuned.</p>
 
     <div class="countdown-timer">
       <div class="time-box">
-        <span id="days">0</span>
+        <span id="days" class="countdown-number">100</span>
         <p>Days</p>
       </div>
       <div class="time-box">
-        <span id="hours">0</span>
+        <span id="hours" class="countdown-number">0</span>
         <p>Hours</p>
       </div>
       <div class="time-box">
-        <span id="minutes">0</span>
+        <span id="minutes" class="countdown-number">0</span>
         <p>Minutes</p>
       </div>
       <div class="time-box">
-        <span id="seconds">0</span>
+        <span id="seconds" class="countdown-number">0</span>
         <p>Seconds</p>
       </div>
     </div>
   </div>
+ 
+
 </section>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  // SET TARGET DATE = NOW + 100 DAYS
+  let countdownDate = new Date();
+  countdownDate.setDate(countdownDate.getDate() + 100);
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = countdownDate.getTime() - now;
+
+    if (distance <= 0) {
+      document.getElementById("days").innerText = 0;
+      document.getElementById("hours").innerText = 0;
+      document.getElementById("minutes").innerText = 0;
+      document.getElementById("seconds").innerText = 0;
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+});
+
+</script>
+
 <section id="scheduler" class="scheduler-section">
   <h2>Schedule Your Meeting</h2>
   
