@@ -247,7 +247,7 @@ section {
   padding: 40px 20px;
   text-align: center;
   background: linear-gradient(135deg, #eef2ff, #f0fdf4);
-  margin-top: 70px;
+  padding-top: 120px;
 }
 
 .dashboard-controls {
